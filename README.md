@@ -7,6 +7,8 @@ Jalankan dengan menggunakan perintah mvn clean install, kemudian mvn spring-boot
 Aplikasi dapat diakses pada alamat : http://localhost:8080
 uri API yang tersedia : 
 - ../profile dengan menggunakan httpmethod POST untuk menyimpan data profile. sample json yang bisa digunakan sebagai berikut :
+
+  ```
   {
 	"id":"test1",
 	"username":"test1",
@@ -18,6 +20,7 @@ uri API yang tersedia :
 		"renang"
 	]
   }
+  ```
 
 - ../profile dengan menggunakan httpmethod GET untuk menampilkan semua data profile
 - ../profile/{username} dengan menggunakan httpmethod GET untuk menampilkan data profile berdasarkan username
