@@ -1,4 +1,4 @@
-package sample;
+package io.github.jimmyrengga.cv;
 
 import java.io.IOException;
 import javax.servlet.Filter;

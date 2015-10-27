@@ -1,9 +1,7 @@
-package sample;
+package io.github.jimmyrengga.cv;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import sample.service.ProfileService;
 
 /**
  *
@@ -16,9 +14,4 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
-    public ProfileService transferService() {
-        return new ProfileService();
-    }
-    
 }

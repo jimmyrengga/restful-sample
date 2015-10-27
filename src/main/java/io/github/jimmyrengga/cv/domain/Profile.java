@@ -1,23 +1,38 @@
-package sample.domain;
+package io.github.jimmyrengga.cv.domain;
 
 import java.util.List;
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
  * @author jimmy
  */
+@Entity
+@Table(name = "t_profile")
 public class Profile {
-    
+
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     private String id;
-    
+
     private String username;
-    
+
     private String address;
-    
+
     private String phoneNumber;
-    
+
     private String email;
-    
+
+    @ElementCollection
+    @CollectionTable(name="hobbies", joinColumns=@JoinColumn(name="profile_id"))
     private List<String> hobbies;
 
     public String getId() {
@@ -67,7 +82,5 @@ public class Profile {
     public void setHobbies(List<String> hobbies) {
         this.hobbies = hobbies;
     }
-    
-    
-    
+
 }
