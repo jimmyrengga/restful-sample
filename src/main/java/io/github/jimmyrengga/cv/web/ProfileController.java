@@ -15,7 +15,7 @@ import io.github.jimmyrengga.cv.service.ProfileService;
  * @author jimmy
  */
 @RestController
-@RequestMapping("/profile")
+@RequestMapping("/api/profile")
 public class ProfileController {
 
     @Autowired ProfileService profileService;
@@ -43,5 +43,15 @@ public class ProfileController {
         }
         
         profileService.delete(profieToDelete);
+    }
+    
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public void update(@PathVariable String id, @RequestBody Profile x){
+        Profile profile = profileService.findOne(id);
+        if(profile == null){
+            throw new RuntimeException("Profile dengan id "+ id +" tidak ditemukan");
+        }
+        x.setId(id);
+        profileService.save(x);
     }
 }
