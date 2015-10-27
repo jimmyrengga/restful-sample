@@ -1,4 +1,4 @@
-package io.github.jimmyrengga.cv;
+package io.github.jimmyrengga.cv.web;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,24 +21,27 @@ public class ProfileController {
     @Autowired ProfileService profileService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Profile> viewAll() {
-        return profileService.getAllProfile();
+    public Iterable<Profile> viewAll() {
+        return profileService.findAll();
     }
     
     @RequestMapping(method = RequestMethod.GET, value = "/{username}")
     public Profile viewByUsername(@PathVariable String username) {
-        return profileService.getProfileByUsername(username);
+        return profileService.findProfileByUsername(username);
     }
     
     @RequestMapping(method = RequestMethod.POST)
     public void saveProfile(@RequestBody Profile profile) {
-        profileService.saveProfile(profile);
+        profileService.save(profile);
     }
     
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{username}")
-    public void deleteProfile(@PathVariable String username) {
-        Profile profieToDelete = profileService.getProfileByUsername(username);
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+    public void deleteProfile(@PathVariable String id) {
+        Profile profieToDelete = profileService.findOne(id);
+        if(profieToDelete == null) {
+            throw new RuntimeException("Profile dengan id "+ id +" tidak ditemukan");
+        }
         
-        profileService.deleteProfile(profieToDelete);
+        profileService.delete(profieToDelete);
     }
 }

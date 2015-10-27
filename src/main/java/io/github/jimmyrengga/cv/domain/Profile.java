@@ -2,6 +2,7 @@ package io.github.jimmyrengga.cv.domain;
 
 import java.util.List;
 import javax.persistence.CollectionTable;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,12 +24,15 @@ public class Profile {
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     private String id;
 
+    @Column(unique = true)
     private String username;
 
     private String address;
 
+    @Column(unique = true)
     private String phoneNumber;
 
+    @Column(unique = true)
     private String email;
 
     @ElementCollection

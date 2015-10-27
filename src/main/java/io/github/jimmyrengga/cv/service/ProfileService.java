@@ -10,4 +10,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface ProfileService extends PagingAndSortingRepository<Profile, Serializable>  {
 
+    Profile findProfileByUsername(String username);
+    
 }
